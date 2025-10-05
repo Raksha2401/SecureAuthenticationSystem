@@ -25,7 +25,7 @@ public class UserProfileController {
     }
 
     @GetMapping("/profile")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getUserProfile(Authentication authentication) {
 
         String username = authentication.getName();

@@ -1,38 +1,49 @@
-# 🔐 Secure Authentication System
+# Secure Authentication System
 
-A secure, scalable backend authentication system built with **Spring Boot**, featuring **JWT-based stateless security**, **BCrypt password encryption**, and **MySQL integration via VM**. Designed for modern web applications requiring robust user management and authentication.
+A backend authentication service built with Spring Boot 3, JWT, BCrypt, and MySQL. It supports user login, token refresh, and role-based access control. Swagger is integrated for API documentation. The database runs on a VM-hosted MySQL instance.
 
----
+## Features
 
-## 🚀 Features
+- JWT-based login and refresh token flow
+- Password encryption using BCrypt
+- Role-based access (USER, ADMIN)
+- Modular architecture: Controller, Service, Repository, Model
+- MySQL integration via VM
+- Built with Gradle
 
-- ✅ User registration and login
-- 🔒 Password encryption using BCrypt
-- 🪪 Stateless authentication via JWT
-- 🧩 Modular architecture: Controller, Service, Repository, Model
-- 🗄️ MySQL database hosted on VM
-- ⚙️ Built with Gradle for streamlined builds
+## Tech Stack
 
----
+Language: Java 17  
+Framework: Spring Boot  
+Security: Spring Security, JWT  
+ORM: Hibernate, JPA  
+Database: MySQL  
+Build Tool: Gradle
 
-## 🛠️ Tech Stack
+## Setup Instructions
 
-| Layer        | Technology            |
-|--------------|------------------------|
-| Language     | Java 17                |
-| Framework    | Spring Boot            |
-| Security     | Spring Security, JWT   |
-| ORM          | Hibernate, JPA         |
-| Database     | MySQL (via VM)         |
-| Build Tool   | Gradle                 |
+Clone the repository and run the application:
 
----
-
-## 📦 Setup Instructions
-
-### 🔧 Clone & Run
-
-```bash
-git clone https://github.com/Raksha2401/SecureAuthenticationSystem.git
-cd SecureAuthenticationSystem
+git clone https://github.com/Raksha2401/SecureAuthenticationSystem.git  
+cd SecureAuthenticationSystem  
 ./gradlew bootRun
+
+## API Documentation
+
+Swagger UI: http://localhost:9898/auth/v1/swagger-ui  
+OpenAPI spec: http://localhost:9898/auth/v1/v3/api-docs
+
+## Sample API Usage
+
+POST /auth/v1/login  
+{ "username": "testuser", "password": "testpass" }
+
+POST /auth/v1/refreshToken  
+{ "token": "<refreshToken>" }
+
+GET /auth/v1/user/profile  
+Authorization: Bearer <accessToken>
+
+## Deployment
+
+Runs on port 9898. Connects to MySQL hosted on a VM.
