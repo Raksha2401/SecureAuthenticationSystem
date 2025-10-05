@@ -6,43 +6,39 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
-public class CustomerUserDetails extends UserInfo implements UserDetails {
+public class CustomerUserDetails implements UserDetails {
 
-    private String username;
+    private final String username;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    private String password;
+    public CustomerUserDetails(UserInfo user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.authorities = user.getRoles().stream()
+                .map(UserRole::getName)
+                .map(String::toUpperCase)
+                .map(r -> new SimpleGrantedAuthority("ROLE_" + r)) // Spring expects "ROLE_*"
+                .collect(Collectors.toList());
 
-    Collection<? extends GrantedAuthority> authorities;
-
-    public CustomerUserDetails(UserInfo byUsername) {
-        this.username = byUsername.getUsername();
-        this.password = byUsername.getPassword();
-        List<GrantedAuthority> auths = new ArrayList<>();
-
-        for(UserRole role : byUsername.getRoles()) {
-            auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
-        }
-        this.authorities = auths;
+        System.out.println("Authorities in CustomerUserDetails: " + this.authorities);
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
     @Override
-   public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
     @Override
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-
-
 }

@@ -4,18 +4,19 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
-import org.authentication.entities.UserInfo;
+
+import java.util.Set;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @Getter
 @Setter
-public class UserInfoDto extends UserInfo {
+public class UserInfoDto {
 
     private String username;
-
     private String lastname;
-
-    private String  phoneNo;
-
+    private String phoneNo;
     private String email;
+    private Set<String> roles;
+    private String password;
+
 }

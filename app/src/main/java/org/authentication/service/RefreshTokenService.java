@@ -42,4 +42,16 @@ public class RefreshTokenService {
         return refreshTokenRepository.findByToken(token);
     }
 
+    public long countActiveTokens() {
+        Iterable<RefreshToken> tokens = refreshTokenRepository.findAll();
+        Instant now = Instant.now();
+        long count = 0;
+        for (RefreshToken token : tokens) {
+            if (token.getExpiryDate().isAfter(now)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }
