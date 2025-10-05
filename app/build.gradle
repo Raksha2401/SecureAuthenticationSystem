@@ -66,5 +66,6 @@ java {
 }
 
 application {
-    mainClass = 'org.example.App'
+    mainClass = 'org.authentication.App'
 }
+
