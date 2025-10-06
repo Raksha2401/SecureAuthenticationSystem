@@ -61,7 +61,7 @@ docker build -t secure-auth .
 2. Run the container:
 
 ```bash
-docker run -p 8080:8080 secure-auth
+docker run -p 9898:9898 secure-auth
 ```
 
 3. Access the service:
@@ -106,7 +106,7 @@ Authorization: Bearer <accessToken>
 ## Deployment
 
 - Runs on port `9898` (local)
-- Docker container exposes port `8080`
+- Docker container exposes port `9898`
 - Connects to MySQL hosted on a VM
 - Gradle wrapper included, no need to install Gradle globally
 

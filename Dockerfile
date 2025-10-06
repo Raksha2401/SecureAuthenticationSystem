@@ -1,4 +1,10 @@
+# Use a recent JDK
 FROM openjdk:21-jdk-slim
+
 WORKDIR /app
-COPY app/build/libs/SecureAuthenticationSystem-plain.jar /app/SecureAuthenticationSystem.jar
-CMD ["java", "-jar", "SecureAuthenticationSystem.jar"]
+
+# Copy the bootable Spring Boot JAR
+COPY app/build/libs/app.jar /app/SecureAuthenticationSystem.jar
+
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "SecureAuthenticationSystem.jar"]
