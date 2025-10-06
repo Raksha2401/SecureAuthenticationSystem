@@ -67,7 +67,7 @@ docker run -p 9898:9898 secure-auth
 3. Access the service:
 
 ```
-http://localhost:8080
+http://localhost:9898
 ```
 
 > Ensure the Dockerfile copies the correct jar (`app/build/libs/SecureAuthenticationSystem-plain.jar`) and uses **Java 21** to match the compiled classes.
